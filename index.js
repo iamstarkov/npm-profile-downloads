@@ -1,6 +1,7 @@
 import rest from 'rest-facade';
 import Registry from 'npm-stats';
-import { map, pipe, prop, filter, is, sum, partial } from 'ramda';
+import { map, pipe, prop, filter, is, sum,
+  partial, join, splitEvery, toPairs, tail, flatten } from 'ramda';
 
 const packages = username => new Promise((resolve, reject) => {
   Registry().user(username).list((err, res) => {
@@ -8,19 +9,19 @@ const packages = username => new Promise((resolve, reject) => {
   });
 });
 
+const api = 'https://api.npmjs.org';
 const downloads = (period, pkg) =>
-  new rest.Client('https://api.npmjs.org/downloads/point/:period/:package')
+  new rest.Client(`${api}/downloads/point/:period/:package`)
     .get({ period, package: pkg });
 
 export default function npmProfileDownloads(period, username, cb) {
   packages(username)
-    .then(map(pkg => downloads(period, pkg)))
-    .then(list => Promise.all(list))
-    .then(pipe(
-      map(prop('downloads')),
-      filter(is(Number)),
-      sum
-    ))
+    .then(pipe(splitEvery(200), map(join(','))))
+    .then(map(bulk => downloads(period, bulk)))
+    .then(bulk => Promise.all(bulk))
+    .then(pipe(map(pipe(toPairs, map(tail), flatten)), flatten))
+    .then(pipe(map(prop('downloads')), filter(is(Number))))
+    .then(sum)
     .then(partial(cb, [null]))
     .catch(cb);
 };

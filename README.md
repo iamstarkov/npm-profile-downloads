@@ -16,28 +16,36 @@
 ```js
 import npmProfileDownloads from 'npm-profile-downloads';
 
-npmProfileDownloads('unicorns'); // unicorns
+npmProfileDownloads('last-month', 'sindresorhus', (err, res) => {
+  if (err) throw err;
+  console.log(res); // 307290898
+});
 ```
 
 ## API
 
-### npmProfileDownloads(input, [options])
+### npmProfileDownloads(period, username, cb)
 
-#### input
+#### period
 
 *Required*  
 Type: `String`
 
-Lorem ipsum.
+One of `last-month`, `last-week` or `last-day`.
 
-#### options
+#### username
 
-##### foo
+*Required*  
+Type: `String`
 
-Type: `Boolean`  
-Default: `false`
+Valid npm username.
 
-Lorem ipsum.
+#### cb
+
+*Required*  
+Type: `Function`
+
+Callback for you.
 
 ## License
 

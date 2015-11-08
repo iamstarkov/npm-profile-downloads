@@ -1,6 +1,6 @@
 import rest from 'rest-facade';
 import Registry from 'npm-stats';
-import R from 'ramda';
+import { map, pipe, prop, filter, is, sum, partial } from 'ramda';
 
 const packages = username => new Promise((resolve, reject) => {
   Registry().user(username).list((err, res) => {
@@ -14,13 +14,13 @@ const downloads = (period, pkg) =>
 
 export default function npmProfileDownloads(period, username, cb) {
   packages(username)
-    .then(R.map(pkg => downloads(period, pkg)))
+    .then(map(pkg => downloads(period, pkg)))
     .then(list => Promise.all(list))
-    .then(R.pipe(
-      R.map(R.prop('downloads')),
-      R.filter(R.is(Number)),
-      R.sum
+    .then(pipe(
+      map(prop('downloads')),
+      filter(is(Number)),
+      sum
     ))
-    .then(R.partial(cb, [null]))
+    .then(partial(cb, [null]))
     .catch(cb);
 };

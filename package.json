@@ -7,8 +7,8 @@
     "coverage": "isparta cover _mocha index.js -- --require babel-core/register",
     "precoveralls": "npm run coverage",
     "coveralls": "coveralls < coverage/lcov.info",
-    "test": "mocha --require babel-core/register",
-    "tdd": "npm test -- --watch",
+    "test": "babel-node test | tap-spec",
+    "tdd": "chokidar *.js -c 'npm test'",
     "transpile": "babel index.js --out-file index.es5.js",
     "prepublish": "npm run transpile",
     "clean": "rimraf index.es5.js",
@@ -35,14 +35,17 @@
   },
   "homepage": "https://github.com/iamstarkov/npm-profile-downloads#readme",
   "devDependencies": {
-    "assert": "*",
     "babel-cli": "^6.1.2",
     "babel-core": "^6.1.2",
     "babel-preset-es2015": "^6.1.2",
     "coveralls": "*",
     "isparta": "*",
-    "mocha": "*",
     "npm-run-all": "*",
     "rimraf": "*"
+  },
+  "dependencies": {
+    "npm-stats": "^1.1.0",
+    "ramda": "^0.18.0",
+    "rest-facade": "^1.1.1"
   }
 }

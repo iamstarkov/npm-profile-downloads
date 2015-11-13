@@ -47,6 +47,10 @@ Type: `Function`
 
 Callback for you.
 
+## Related
+
+* [npm-profile-downloads-cli](https://github.com/iamstarkov/npm-profile-downloads-cli) — get downloads stats for target npm profile with cli
+
 ## License
 
 MIT © [Vladimir Starkov](https://iamstarkov.com)

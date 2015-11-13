@@ -1,6 +1,6 @@
 {
   "name": "npm-profile-downloads",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "get downloads stats for target npm profile",
   "main": "index.es5.js",
   "scripts": {

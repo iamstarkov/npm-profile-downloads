@@ -4,7 +4,7 @@
   "description": "get downloads stats for target npm profile",
   "main": "index.es5.js",
   "scripts": {
-    "coverage": "isparta cover _mocha index.js -- --require babel-core/register",
+    "coverage": "babel-node ./node_modules/.bin/isparta cover test.js",
     "precoveralls": "npm run coverage",
     "coveralls": "coveralls < coverage/lcov.info",
     "test": "babel-node test | tap-spec",

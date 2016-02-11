@@ -16,15 +16,16 @@
 ```js
 import npmProfileDownloads from 'npm-profile-downloads';
 
-npmProfileDownloads('last-month', 'sindresorhus', (err, res) => {
-  if (err) throw err;
+npmProfileDownloads('last-month', 'sindresorhus').then(res => {
   console.log(res); // 307290898
 });
 ```
 
 ## API
 
-### npmProfileDownloads(period, username, cb)
+### npmProfileDownloads(period, username)
+
+Return a promise that resolves to downloads stats.
 
 #### period
 
@@ -39,13 +40,6 @@ One of `last-month`, `last-week` or `last-day`.
 Type: `String`
 
 Valid npm username.
-
-#### cb
-
-*Required*  
-Type: `Function`
-
-Callback for you.
 
 ## Related
 

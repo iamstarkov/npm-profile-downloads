@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "npm-stats": "^1.1.0",
+    "pinkie-promise": "^2.0.0",
     "ramda": "^0.19.1",
     "rest-facade": "^1.1.1"
   }

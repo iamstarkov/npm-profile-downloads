@@ -1,5 +1,6 @@
 import rest from 'rest-facade';
 import Registry from 'npm-stats';
+import Promise from 'pinkie-promise';
 import { map, pipe, prop, filter, is, sum,
   join, splitEvery, toPairs, tail, flatten } from 'ramda';
 

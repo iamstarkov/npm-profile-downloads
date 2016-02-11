@@ -4,7 +4,7 @@
   "description": "get downloads stats for target npm profile",
   "main": "index.es5.js",
   "scripts": {
-    "coverage": "isparta cover _mocha index.js -- --require babel-core/register",
+    "coverage": "babel-node ./node_modules/.bin/isparta cover test.js",
     "precoveralls": "npm run coverage",
     "coveralls": "coveralls < coverage/lcov.info",
     "test": "babel-node test | tap-spec",
@@ -35,9 +35,10 @@
   },
   "homepage": "https://github.com/iamstarkov/npm-profile-downloads#readme",
   "devDependencies": {
-    "babel-cli": "^6.1.2",
-    "babel-core": "^6.1.2",
-    "babel-preset-es2015": "^6.1.2",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-preset-es2015": "^6.5.0",
     "coveralls": "*",
     "isparta": "*",
     "npm-run-all": "*",
@@ -47,7 +48,8 @@
   },
   "dependencies": {
     "npm-stats": "^1.1.0",
-    "ramda": "^0.18.0",
+    "pinkie-promise": "^2.0.0",
+    "ramda": "^0.19.1",
     "rest-facade": "^1.1.1"
   }
 }
